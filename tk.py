@@ -1,5 +1,5 @@
 import sqlite3, subprocess
-import customtkinter as ctk
+import tkinter as tk
 from rich import print
 
 subprocess.run("cls", shell=True)
@@ -24,29 +24,29 @@ try:
         response = cursor.fetchall()
 
         if (email, senha) in response:
-            status_label.configure(text="Login realizado com sucesso!", text_color="green")
+            status_label["text"] = "Login feito com sucesso."
+            status_label["foreground"] = "green"
         else:
-            status_label.configure(text="Os dados são inválidos.", text_color="red")
+            status_label["text"] = "Os dados são inválidos."
+            status_label["foreground"] = "red"
 
-    ctk.set_appearance_mode("dark")
-    
-    app = ctk.CTk()
+    app = tk.Tk()
     app.title("BookTable")
     # app.iconbitmap("compasso.ico")
     app.geometry("400x300")
 
-    ctk.CTkLabel(app, text="BookTable").pack(pady=20)
+    tk.Label(app, text="BookTable", pady=20).pack()
 
-    ctk.CTkLabel(app, text="Email:",).pack()
-    email_entry = ctk.CTkEntry(app)
+    tk.Label(app, text="Email:",).pack()
+    email_entry = tk.Entry(app)
     email_entry.pack()
 
-    ctk.CTkLabel(app, text="Senha:",).pack(pady=(10, 0))
-    senha_entry = ctk.CTkEntry(app, show="*")
+    tk.Label(app, text="Senha:",).pack()
+    senha_entry = tk.Entry(app)
     senha_entry.pack()
 
-    ctk.CTkButton(app, text="Login", command=autenticar_login).pack(pady=(10, 0))
-    status_label = ctk.CTkLabel(app, text="")
+    tk.Button(app, text="Login", command=autenticar_login).pack()
+    status_label = tk.Label(app, text="")
     status_label.pack()
 
     app.mainloop()
