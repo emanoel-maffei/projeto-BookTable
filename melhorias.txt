@@ -1,5 +1,3 @@
 Possiveis melhorias futuras:
 
 1 - Criar instancias da classe CTkFont() para reutiliza-las ao decorrer do programa para quando precisar alter o tamanho, familia ou  o peso da fonte, apenas precisemos alterar o argumento passado como parâmetro para o construtor da classe CTkFont.
-
-2 - 
