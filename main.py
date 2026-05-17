@@ -1,5 +1,6 @@
 # from .* import .*
 from customtkinter import CTkFont
+from customtkinter import CTkMessa
 from rich import print
 # import .*
 import sqlite3, subprocess
@@ -10,7 +11,7 @@ import customtkinter as ctk
 
 subprocess.run("cls", shell=True)
 ctk.set_appearance_mode("Light")
-ctk.set_default_color_theme("blue")
+ctk.set_default_color_theme("./tema_ctk_personalizado.json")
 
 class App(ctk.CTk):
     def __init__(self):
