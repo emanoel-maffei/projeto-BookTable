@@ -1,9 +1,10 @@
 # from .* import .*
 from customtkinter import CTkFont
-from customtkinter import CTkMessa
+from CTkMessagebox import CTkMessagebox
 from rich import print
 # import .*
-import sqlite3, subprocess
+import sqlite3
+import subprocess
 import customtkinter as ctk
 
 # Documentação oficial do customtkinter
@@ -24,9 +25,9 @@ class App(ctk.CTk):
         # Definindo título, forma e ícone
         self.title("BookTable")
         self.geometry("600x500")
-        self.minsize(width=300, height=400)
+        self.minsize(width=350, height=400)
+        self.maxsize(width=800, height=550)
         self.iconbitmap("./livro.ico")
-
         
         ############
         ## Fontes ##
@@ -108,7 +109,7 @@ class TelaLogin(ctk.CTkFrame):
             master=self,
             text="BookTable",
             text_color="white",
-            fg_color="blue",
+            fg_color=("#0000FF", "#0000EE"),
             corner_radius=16,
             font=CTkFont(
                 size=44,
@@ -130,7 +131,12 @@ class TelaLogin(ctk.CTkFrame):
             master=self,
             fg_color="transparent"
         )
-        self.frame_usuario.grid(row=1, column=0, sticky="nsew")
+        self.frame_usuario.grid(
+            row=1,
+            column=0,
+            sticky="nsew",
+            pady=(15, 0)
+        )
 
         # Este frame foi criado para centralizar os elementos dentro do Frame que ocupa a linha 1
         self.frame_usuario_centralizador = ctk.CTkFrame(
@@ -147,19 +153,26 @@ class TelaLogin(ctk.CTkFrame):
             master=self.frame_usuario_centralizador,
             text="Usuário:",
             font=CTkFont(
-                size=16,
+                size=20,
                 family="Arial",
                 weight="bold"
             )
         )
-        self.label_usuario.pack(pady=(0, 20))
+        self.label_usuario.pack(pady=(0, 10))
 
         self.entry_usuario = ctk.CTkEntry(
             master=self.frame_usuario_centralizador,
             placeholder_text="Digite seu email.",
-            width=300
+            width=300,
+            height=35,
+            font=CTkFont(
+                size=16,
+                family="Arial"
+            )
         )
-        self.entry_usuario.pack(padx=(16, 16))
+        self.entry_usuario.pack(
+            padx=(16, 16)
+        )
 
         ## Linha 2 ##
 
@@ -185,17 +198,23 @@ class TelaLogin(ctk.CTkFrame):
             master=self.frame_senha_centralizador,
             text="Senha:",
             font=CTkFont(
-                size=16,
+                size=20,
                 family="Arial",
                 weight="bold"
             )
         )
-        self.label_senha.pack(pady=(0, 20))
+        self.label_senha.pack(pady=(0, 10))
 
         self.entry_senha = ctk.CTkEntry(
             master=self.frame_senha_centralizador,
-            placeholder_text="Digite a senha.",
-            width=300
+            placeholder_text="Digite sua senha.",
+            width=300,
+            height=35,
+            font=CTkFont(
+                size=16,
+                family="Arial"
+            ),
+            show="*"
         )
         self.entry_senha.pack(padx=(16, 16))
 
@@ -208,15 +227,16 @@ class TelaLogin(ctk.CTkFrame):
         self.frame_entrar.grid(
             row=3,
             column=0,
-            sticky="nsew"
+            sticky="nsew",
         )
 
         self.button_entrar = ctk.CTkButton(
             master=self.frame_entrar,
             text="Entrar",
-            command=self.entrar,
+            border_width=2,
             width=100,
             height=50,
+            command=self.entrar,
             font=CTkFont(
                 size=24,
                 family="Arial"
@@ -234,8 +254,19 @@ class TelaLogin(ctk.CTkFrame):
         ctk.set_appearance_mode("Dark" if self.switch_modo_escuro.get() else "Light")
 
     def entrar(self):
-        print("[Entrar] Clicked.")
-        pass
-
+        # Será implementado posteriormente
+        msg = CTkMessagebox(
+            title="Pare ai! Estamos em construção.",
+            icon="info",
+            message="Por favor, aguarde nossos engenheiros concluirem a obra antes de prosseguir.",
+            font=CTkFont(
+                size=14,
+                family="Arial"
+            ),
+            option_1="Ficar no aguardo...",
+            width=450,
+            height=250,
+        )
+        
 root = App()
 root.mainloop()

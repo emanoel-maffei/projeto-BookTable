@@ -1,0 +1,15 @@
+Pacotes necessários para o funcionamento correto do programa:
+
+- customtkinter
+- CTkMessagebox
+- rich
+- sqlite3
+- subprocess
+
+Comando de instalação no terminal:
+
+pip install customtkinter
+pip install CTkMessagebox
+pip install rich
+pip install sqlite3
+pip install subprocess
