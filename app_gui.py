@@ -1,5 +1,8 @@
+# import .*
 import customtkinter as ctk
+# from .* import .*
 from components.tela_login import TelaLogin
+from components.tela_inicial import TelaInicial
 from customtkinter import CTkFont
 
 # Documentação oficial do customtkinter
@@ -18,7 +21,8 @@ class App(ctk.CTk):
         self.geometry("600x500")
         self.minsize(width=350, height=400)
         self.maxsize(width=800, height=550)
-        self.iconbitmap("./assets/icons/livro.ico")
+        self.iconbitmap("./assets/icons/livros.ico")
+        # self.iconbitmap("./assets/icons/livro.ico")
         
         ############
         ## Fontes ##
@@ -49,8 +53,21 @@ class App(ctk.CTk):
         ## Criando a interface por meio de classes ##
         #############################################
     
-        self.tela_login = TelaLogin(master=self)
+        self.tela_login = TelaLogin(
+            master=self,
+            fg_color="transparent"
+        )
         self.tela_login.pack(
+            expand=True,
+            fill="both",
+        )
+        self.tela_login.pack_forget()
+
+        self.tela_inicial = TelaInicial(
+            master=self,
+            fg_color="transparent"
+        )
+        self.tela_inicial.pack(
             expand=True,
             fill="both"
         )
