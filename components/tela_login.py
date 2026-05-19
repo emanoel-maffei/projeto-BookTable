@@ -1,10 +1,12 @@
+# import .*
 import customtkinter as ctk
+# from *. import .*
 from CTkMessagebox import CTkMessagebox
 from customtkinter import CTkFont
 
 class TelaLogin(ctk.CTkFrame):
     '''Cria um frame contendo todos os elementos de uma tela de login pronta'''
-    def __init__(self, master):
+    def __init__(self, master, **kwargs):
         '''
         Cria e adiciona todos os elementos ao frame
         
@@ -14,11 +16,11 @@ class TelaLogin(ctk.CTkFrame):
         '''
         
         # Para de fato criar um frame
-        super().__init__(master)
+        super().__init__(master, **kwargs)
         
-        ############################
-        ## Configurações do Frame ##
-        ############################
+        ################################
+        ## Configurações da TelaLogin ##
+        ################################
     
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure((1, 2, 3), weight=1)
@@ -41,9 +43,9 @@ class TelaLogin(ctk.CTkFrame):
             y=10,
         )
         
-        ## Linha 0 ##
+        ## Linha 0 | Coluna 0 ##
 
-        self.label_titulo = ctk.CTkLabel(
+        self.label_logo = ctk.CTkLabel(
             master=self,
             text="BookTable",
             text_color="white",
@@ -54,7 +56,7 @@ class TelaLogin(ctk.CTkFrame):
                 family="Arial"
             )
         )
-        self.label_titulo.grid(
+        self.label_logo.grid(
             row=0, 
             column=0,
             ipadx=16, 
@@ -62,7 +64,7 @@ class TelaLogin(ctk.CTkFrame):
             pady=(60, 0)
         )
 
-        ## Linha 1 ##
+        ## Linha 1 | Coluna 0 ##
 
         # Este Frame foi criado para ocupar a linha 1 inteira
         self.frame_usuario = ctk.CTkFrame(
@@ -112,7 +114,7 @@ class TelaLogin(ctk.CTkFrame):
             padx=(16, 16)
         )
 
-        ## Linha 2 ##
+        ## Linha 2 | Coluna 0 ##
 
         # Este Frame foi criado para ocupar a linha 2 inteira
         self.frame_senha = ctk.CTkFrame(
@@ -156,7 +158,7 @@ class TelaLogin(ctk.CTkFrame):
         )
         self.entry_senha.pack(padx=(16, 16))
 
-        ## Linha 3 ##
+        ## Linha 3 | Coluna 0 ##
 
         self.frame_entrar = ctk.CTkFrame(
             master=self,
