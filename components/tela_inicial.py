@@ -107,11 +107,11 @@ class TelaInicial(ctk.CTkFrame):
             text="",
             image=self.image_tema,
             fg_color="transparent",
-            hover_color=("#EEEE00", "#FFFFFF"),
+            hover_color=("#DDDDDD", "#FFFFFF"),
             width=30,
             height=30,
             border_width=2,
-            border_color=("#FFFF00", "#000088"),
+            border_color=("#DDDDDD", "#333333"),
             command=self.alternar_tema
         )
         self.button_tema.pack(
