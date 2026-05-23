@@ -47,8 +47,15 @@ class TelaInicial(ctk.CTkFrame):
             pady=(0, 5)
         )
 
+        self.bind("<Configure>", self.reorganizar_livros)
+
     def alternar_tema(self):
         if ctk.get_appearance_mode() == "Light":
             ctk.set_appearance_mode("Dark")
         else:
             ctk.set_appearance_mode("Light")
+
+    def reorganizar_livros(self, eventos):
+        self.tabview_parte_principal.frame_aba_inicio.reorganizar_livros(eventos)
+        # self.tabview_parte_principal.frame_aba_curtidos.reorganizar_livros(eventos)
+        # self.tabview_parte_principal.frame_aba_baixados.reorganizar_livros(eventos)

@@ -82,12 +82,12 @@ class AbaInicio(ctk.CTkFrame):
                 image=self.image_livro
             ))
 
-        self.bind("<Configure>", self.reorganizar_livros)
+    def reorganizar_livros(self, eventos):
+        if self.frame_livros.winfo_width() > 1:
+            largura_aba_inicial = self.frame_livros.winfo_width()
+        else:
+            largura_aba_inicial = 500
 
-    def reorganizar_livros(self, evento):
-        print(self.frame_livros.winfo_width())
-
-        largura_aba_inicial = self.frame_livros.winfo_width()
         largura_livro = 88
         livros_por_linha = max(1, (largura_aba_inicial // largura_livro))
 
