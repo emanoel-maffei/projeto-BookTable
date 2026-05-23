@@ -21,7 +21,7 @@ class PartePrincipal(ctk.CTkTabview):
 
         self.frame_aba_inicio = AbaInicio(
             master=self.tab("Inicio"),
-            fg_color="#F0F0F0"
+            fg_color="transparent"
         )
         self.frame_aba_inicio.pack(
             expand=True,
@@ -31,7 +31,7 @@ class PartePrincipal(ctk.CTkTabview):
         ## Aba Curtidos ##
         self.frame_aba_curtidos = AbaCurtidos(
             master=self.tab("Curtidos"),
-            fg_color="#F0F0F0"
+            fg_color="transparent"
         )
         self.frame_aba_curtidos.pack(
             expand=True,
@@ -41,7 +41,7 @@ class PartePrincipal(ctk.CTkTabview):
         ## Aba Baixados ##
         self.frame_aba_baixados = AbaBaixados(
             master=self.tab("Baixados"),
-            fg_color="#F0F0F0"
+            fg_color="transparent"
         )
         self.frame_aba_baixados.pack(
             expand=True,

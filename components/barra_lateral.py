@@ -10,8 +10,8 @@ class BarraLateral(ctk.CTkFrame):
 
         # Botão Tela Inicial
         self.image_casa = ctk.CTkImage(
-            light_image=Image.open("./assets/imgs/casa_modo_claro.png"),
-            dark_image=Image.open("./assets/imgs/casa_modo_escuro.png"),
+            light_image=Image.open("./assets/icons/casa_modo_claro.png"),
+            dark_image=Image.open("./assets/icons/casa_modo_escuro.png"),
             size=(20, 20)
         )
         self.button_inicial = ctk.CTkButton(
@@ -32,8 +32,8 @@ class BarraLateral(ctk.CTkFrame):
 
         # botão Tela Curtidos
         self.image_coracao = ctk.CTkImage(
-            light_image=Image.open("./assets/imgs/coracao_modo_claro.png"),
-            dark_image=Image.open("./assets/imgs/coracao_modo_escuro.png"),
+            light_image=Image.open("./assets/icons/coracao_modo_claro.png"),
+            dark_image=Image.open("./assets/icons/coracao_modo_escuro.png"),
             size=(20, 20)
         )
         self.button_curtidos = ctk.CTkButton(
@@ -53,8 +53,8 @@ class BarraLateral(ctk.CTkFrame):
         )
 
         self.image_download = ctk.CTkImage(
-            light_image=Image.open("./assets/imgs/download_modo_claro.png"),
-            dark_image=Image.open("./assets/imgs/download_modo_escuro.png"),
+            light_image=Image.open("./assets/icons/download_modo_claro.png"),
+            dark_image=Image.open("./assets/icons/download_modo_escuro.png"),
             size=(20, 20)
         )
         self.button_baixados =  ctk.CTkButton(
@@ -75,8 +75,8 @@ class BarraLateral(ctk.CTkFrame):
 
         
         self.image_tema = ctk.CTkImage(
-            light_image=Image.open("./assets/imgs/sol.png"),
-            dark_image=Image.open("./assets/imgs/lua.png"),
+            light_image=Image.open("./assets/icons/sol.png"),
+            dark_image=Image.open("./assets/icons/lua.png"),
         )
         self.button_tema = ctk.CTkButton(
             master=self,
