@@ -1,7 +1,7 @@
 # import .*
 import customtkinter as ctk
 # from *. import .*
-from CTkMessagebox import CTkMessagebox
+# from CTkMessagebox import CTkMessagebox
 from customtkinter import CTkFont
 
 class TelaLogin(ctk.CTkFrame):
@@ -195,15 +195,16 @@ class TelaLogin(ctk.CTkFrame):
 
     def entrar(self):
         # Será implementado posteriormente
-        msg = CTkMessagebox(
-            title="Pare ai! Estamos em construção.",
-            icon="info",
-            message="Por favor, aguarde nossos engenheiros concluirem a obra antes de prosseguir.",
-            font=CTkFont(
-                size=14,
-                family="Arial"
-            ),
-            option_1="Ficar no aguardo...",
-            width=450,
-            height=250,
-        )
+        # msg = CTkMessagebox(
+        #     title="Pare ai! Estamos em construção.",
+        #     icon="info",
+        #     message="Por favor, aguarde nossos engenheiros concluirem a obra antes de prosseguir.",
+        #     font=CTkFont(
+        #         size=14,
+        #         family="Arial"
+        #     ),
+        #     option_1="Ficar no aguardo...",
+        #     width=450,
+        #     height=250,
+        # )
+        pass

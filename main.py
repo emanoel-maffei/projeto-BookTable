@@ -2,7 +2,10 @@
 import customtkinter as ctk
 import sqlite3
 import subprocess
+import io 
 # from .* import .*
+from PIL import Image
+# components
 from app_gui import App
 
 # Para limpar o terminal e facilitar a leitura das informações imprimidas ao decorrer do código

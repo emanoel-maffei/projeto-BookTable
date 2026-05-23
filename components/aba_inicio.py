@@ -1,5 +1,6 @@
 # import .*
 import customtkinter as ctk
+import subprocess
 # from .* import .*
 from customtkinter import CTkFont
 from PIL import Image
@@ -66,26 +67,40 @@ class AbaInicio(ctk.CTkFrame):
             sticky="nsew"
         )
 
-        # Elementos dos Livros
+        # Elementos representando Livros
 
-        self.image_codigo_limpo = ctk.CTkImage(
-            light_image=Image.open("./assets/imgs/books/codigo_limpo.jpg"),
-            dark_image=Image.open("./assets/imgs/books/codigo_limpo.jpg"),
+        self.livros = list()
+        self.image_livro = ctk.CTkImage(
+            light_image=Image.open("./assets/icons/livro.ico"),
+            dark_image=Image.open("./assets/icons/livro.ico"),
             size=(76, 100)
         )
-        self.button_codigo_limpo = Livro(
-            master=self.frame_livros,
-            image=self.image_codigo_limpo
-        )
-        self.button_codigo_limpo.pack(side="left")
 
-        self.image_programacao_funcional = ctk.CTkImage(
-            light_image=Image.open("./assets/imgs/books/programacao_funcional.jpg"),
-            dark_image=Image.open("./assets/imgs/books/programacao_funcional.jpg"),
-            size=(76, 100)
-        )
-        self.button_programacao_funcional = Livro(
-            master=self.frame_livros,
-            image=self.image_programacao_funcional
-        )
-        self.button_programacao_funcional.pack(side="left")
+        for i in range(18):
+            self.livros.append(Livro(
+                master=self.frame_livros,
+                image=self.image_livro
+            ))
+
+        self.bind("<Configure>", self.reorganizar_livros)
+
+    def reorganizar_livros(self, evento):
+        print(self.frame_livros.winfo_width())
+
+        largura_aba_inicial = self.frame_livros.winfo_width()
+        largura_livro = 88
+        livros_por_linha = max(1, (largura_aba_inicial // largura_livro))
+
+        linha = 0
+        coluna = 0
+
+        for livro in self.livros:
+            if coluna >= livros_por_linha:
+                linha += 1
+                coluna = 0
+
+            livro.grid(
+                row=linha,
+                column=coluna
+            )
+            coluna += 1
