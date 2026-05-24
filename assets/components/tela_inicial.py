@@ -6,7 +6,7 @@ from assets.components.barra_lateral import BarraLateral
 from assets.components.parte_principal import PartePrincipal
 
 class TelaInicial(ctk.CTkFrame):
-    def __init__(self, master, database, **kwargs):
+    def __init__(self, master, database, funcao_mudar_tela, **kwargs):
         super().__init__(master, **kwargs)
 
         self.db = database
@@ -27,6 +27,7 @@ class TelaInicial(ctk.CTkFrame):
         self.frame_barra_lateral = BarraLateral(
             master=self,
             database=self.db,
+            funcao_mudar_tela=funcao_mudar_tela,
             corner_radius=0,
             fg_color=("#FFFFFF", "#000000"),
         )
@@ -50,8 +51,8 @@ class TelaInicial(ctk.CTkFrame):
             padx=(5, 5),
             pady=(0, 5)
         )
-
-        self.bind("<Configure>", self.reorganizar_livros)
+        
+        self.bind("<Configure>", self.janela_redimencionada)
 
     def alternar_tema(self):
         if ctk.get_appearance_mode() == "Light":
@@ -59,7 +60,8 @@ class TelaInicial(ctk.CTkFrame):
         else:
             ctk.set_appearance_mode("Light")
 
-    def reorganizar_livros(self, eventos):
-        self.tabview_parte_principal.frame_aba_inicio.reorganizar_livros(eventos)
-        # self.tabview_parte_principal.frame_aba_curtidos.reorganizar_livros(eventos)
-        # self.tabview_parte_principal.frame_aba_baixados.reorganizar_livros(eventos)
+    def definir_aba_tabview(self, aba):
+        self.tabview_parte_principal.set(aba)
+
+    def janela_redimencionada(self, eventos):
+        self.tabview_parte_principal.reorganizar_livros(eventos)

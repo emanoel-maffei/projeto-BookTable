@@ -1,6 +1,6 @@
 # import .*
 import customtkinter as ctk
-import subprocess
+import io
 # from .* import .*
 from customtkinter import CTkFont
 from PIL import Image
@@ -62,10 +62,10 @@ class AbaInicio(ctk.CTkFrame):
         self.frame_livros = ctk.CTkScrollableFrame(
             master=self,
             fg_color="transparent",
-            scrollbar_button_color="#AAAAAA",
-            scrollbar_button_hover_color="#999999",
+            scrollbar_button_color=("#AAAAAA", "#666666"),
+            scrollbar_button_hover_color=("#999999", "#555555"),
             border_width=2,
-            border_color="#DDDDDD"
+            border_color=("#DDDDDD", "#333333")
         )
         self.frame_livros.grid(
             row=1,
@@ -73,15 +73,30 @@ class AbaInicio(ctk.CTkFrame):
             sticky="nsew"
         )
 
-        # Elementos representando Livros
-
+        self.dados_livros = self.db.buscar_todos_livros()
 
         self.livros = list()
         
-        # Aqui...
+        for cod_livro, titulo, subtitulo, capa_binario in self.dados_livros:
+            capa_arquivo_virtual = io.BytesIO(capa_binario)
+            capa = ctk.CTkImage(
+                light_image=Image.open(capa_arquivo_virtual),
+                dark_image=Image.open(capa_arquivo_virtual),
+                size=(76, 100)
+            )
+
+            livro = Livro(
+                master=self.frame_livros,
+                cod_livro=cod_livro,
+                titulo=titulo,
+                subtitulo=subtitulo,
+                capa=capa
+            )
+            self.livros.append(livro)
+
+            capa_arquivo_virtual.close()
 
     def reorganizar_livros(self, eventos):
-        subprocess.run("cls", shell=True)
         if self.frame_livros.winfo_width() > 1:
             largura_aba_inicial = self.frame_livros.winfo_width()
         else:

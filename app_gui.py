@@ -58,7 +58,7 @@ class App(ctk.CTk):
         self.tela_login = TelaLogin(
             master=self,
             database=self.db,
-            action=self.ir_tela_inicial,
+            funcao_mudar_tela=self.ir_tela_inicial,
             fg_color="transparent"
         )
         self.tela_login.pack(
@@ -69,6 +69,7 @@ class App(ctk.CTk):
         self.tela_inicial = TelaInicial(
             master=self,
             database=self.db,
+            funcao_mudar_tela=self.ir_tela_login,
             fg_color="transparent"
         )
         self.tela_inicial.pack_forget()

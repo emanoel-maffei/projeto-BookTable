@@ -1,16 +1,14 @@
 from PIL import Image, ImageOps
 from rich import print
 
-# PIL (ou Pillow)   -> Python Imaging Library
+# PIL (ou Pillow) -> Python Imaging Library
 
 # Image: cuida de carregar, salvar e manipular a estrutura básica da imagem.
 # 
 # ImageOps (Image Operations): foca em algoritmos prontos de nível mais alto, como inverter 
 # cores, espelhar, mudar contraste automaticamente ou adicionar bordas.
 
-# img = Image.open("../../assets/imgs/casa_modo_claro.png")
-# img = Image.open("../../assets/imgs/coracao_modo_claro.png")
-img = Image.open("../../assets/imgs/download_modo_claro.png")
+img = Image.open("../../assets/icons/sair_modo_claro.png")
 
 if img.mode == "RGBA":
     # O método .split() divide a imagem em seus canais de cores individuais e 
@@ -31,5 +29,5 @@ if img.mode == "RGBA":
 else:
     final_img = ImageOps.invert(img)
 
-final_img.save("download_modo_escuro.png")
+final_img.save("../../assets/icons/sair_modo_escuro.png")
 final_img.show()

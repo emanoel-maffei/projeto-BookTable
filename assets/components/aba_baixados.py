@@ -23,4 +23,7 @@ class AbaBaixados(ctk.CTkFrame):
             rely=0.5,
             anchor="center"
         )
+
+    def reorganizar_livros(self, eventos):
+        pass
         

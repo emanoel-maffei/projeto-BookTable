@@ -1,24 +1,25 @@
 Pacotes necessários para o funcionamento correto do programa:
 
-- customtkinter
-- CTkMessagebox
-- rich
-- sqlite3 # Nativo
-- subprocess # Nativo
-- PIL
+    - customtkinter
+    - CTkMessagebox
+    - rich
+    - sqlite3 # Nativo
+    - subprocess # Nativo
+    - PIL
+    - io # Nativo
 
 Comandos separados de instalação no terminal:
 
-pip install customtkinter
-pip install CTkMessagebox
-pip install rich
-pip install Pillow
+    pip install customtkinter
+    pip install CTkMessagebox
+    pip install rich
+    pip install Pillow
 
 Comando de instalação de todos no terminal:
 
     Obs.: Copie e cole tudo no terminal.
 
-pip install customtkinter;
-pip install CTkMessagebox;
-pip install rich;
-pip install Pillow;
+    pip install customtkinter;
+    pip install CTkMessagebox;
+    pip install rich;
+    pip install Pillow;

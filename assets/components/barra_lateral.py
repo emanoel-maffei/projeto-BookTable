@@ -5,7 +5,7 @@ from customtkinter import CTkFont
 from PIL import Image # Python Imaging Library
 
 class  BarraLateral(ctk.CTkFrame):
-    def __init__(self, master, database, **kwargs):
+    def __init__(self, master, database, funcao_mudar_tela, **kwargs):
         super().__init__(master, **kwargs)
 
         self.db = database
@@ -75,6 +75,26 @@ class  BarraLateral(ctk.CTkFrame):
             pady=(10, 0)
         )
 
+        self.image_sair = ctk.CTkImage(
+            light_image=Image.open("./assets/icons/sair_modo_claro.png"),
+            dark_image=Image.open("./assets/icons/sair_modo_escuro.png"),
+        )
+        self.button_sair = ctk.CTkButton(
+            master=self,
+            text="",
+            image=self.image_sair,
+            fg_color="transparent",
+            hover_color=("#DDDDDD", "#333333"),
+            width=30,
+            height=30,
+            border_width=2,
+            border_color=("#DDDDDD", "#333333"),
+            command=funcao_mudar_tela
+        )
+        self.button_sair.pack(
+            padx=(10, 10),
+            pady=(10, 10)
+        )
         
         self.image_tema = ctk.CTkImage(
             light_image=Image.open("./assets/icons/sol.png"),

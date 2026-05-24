@@ -20,7 +20,6 @@ class PartePrincipal(ctk.CTkTabview):
         self.add("Baixados")
 
         ## Aba Inicio ##
-
         self.frame_aba_inicio = AbaInicio(
             master=self.tab("Inicio"),
             database=self.db,
@@ -52,3 +51,8 @@ class PartePrincipal(ctk.CTkTabview):
             expand=True,
             fill="both"
         )
+
+    def reorganizar_livros(self, eventos):
+        self.frame_aba_inicio.reorganizar_livros(eventos)
+        self.frame_aba_curtidos.reorganizar_livros(eventos)
+        self.frame_aba_baixados.reorganizar_livros(eventos)

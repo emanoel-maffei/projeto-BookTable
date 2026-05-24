@@ -6,7 +6,7 @@ from customtkinter import CTkFont
 
 class TelaLogin(ctk.CTkFrame):
     '''Cria um frame contendo todos os elementos de uma tela de login pronta'''
-    def __init__(self, master, database, action, **kwargs):
+    def __init__(self, master, database, funcao_mudar_tela, **kwargs):
         '''
         Cria e adiciona todos os elementos ao frame
         
@@ -19,7 +19,7 @@ class TelaLogin(ctk.CTkFrame):
         super().__init__(master, **kwargs)
         
         self.db = database
-        self.action = action
+        self.funcao_mudar_tela = funcao_mudar_tela
 
         ################################
         ## Configurações da TelaLogin ##
@@ -200,10 +200,10 @@ class TelaLogin(ctk.CTkFrame):
         email = self.entry_usuario.get().strip()
         senha = self.entry_senha.get().strip()
 
-        if not email or not senha:
+        if not self.db.autenticar_dados_usuario(email, senha):
             CTkMessagebox(
                 title="Dados inválidos",
-                message="Preencha os campos corretamente.",
+                message="Os dados fornecidos são inválidos, não há uma conta cadastrada com esse email e senha.",
                 icon="warning",
                 font=CTkFont(
                     size=14,
@@ -212,21 +212,7 @@ class TelaLogin(ctk.CTkFrame):
             )
             return
 
-        cod_usuario = self.db.buscar_usuario(email, senha)
-
-        if not cod_usuario:
-            self.db.cadastrar_usuario(email, senha)
-            CTkMessagebox(
-                title="Usuário Cadastrado",
-                message=f"Usuário {email} cadastrado com sucesso!",
-                icon="check",
-                font=CTkFont(
-                    size=14,
-                    family="Arial"
-                )
-            )
-        else:
-            self.action()
-
         self.entry_usuario.delete("0", "end")
         self.entry_senha.delete("0", "end")
+
+        self.funcao_mudar_tela()
