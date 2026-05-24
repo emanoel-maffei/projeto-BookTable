@@ -1,13 +1,15 @@
 # import .*
 import customtkinter as ctk
 # from .* import .*
-from components.aba_inicio import AbaInicio
-from components.aba_curtidos import AbaCurtidos
-from components.aba_baixados import AbaBaixados
+from assets.components.aba_inicio import AbaInicio
+from assets.components.aba_curtidos import AbaCurtidos
+from assets.components.aba_baixados import AbaBaixados
 
 class PartePrincipal(ctk.CTkTabview):
-    def __init__(self, master, **kwargs):
+    def __init__(self, master, database, **kwargs):
         super().__init__(master, **kwargs)
+
+        self.db = database
 
         #########################
         ## Construção das abas ##
@@ -21,6 +23,7 @@ class PartePrincipal(ctk.CTkTabview):
 
         self.frame_aba_inicio = AbaInicio(
             master=self.tab("Inicio"),
+            database=self.db,
             fg_color="transparent"
         )
         self.frame_aba_inicio.pack(
@@ -31,6 +34,7 @@ class PartePrincipal(ctk.CTkTabview):
         ## Aba Curtidos ##
         self.frame_aba_curtidos = AbaCurtidos(
             master=self.tab("Curtidos"),
+            database=self.db,
             fg_color="transparent"
         )
         self.frame_aba_curtidos.pack(
@@ -41,6 +45,7 @@ class PartePrincipal(ctk.CTkTabview):
         ## Aba Baixados ##
         self.frame_aba_baixados = AbaBaixados(
             master=self.tab("Baixados"),
+            database=self.db,
             fg_color="transparent"
         )
         self.frame_aba_baixados.pack(

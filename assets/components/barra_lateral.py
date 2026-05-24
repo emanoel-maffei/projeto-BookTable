@@ -4,9 +4,11 @@ import customtkinter as ctk
 from customtkinter import CTkFont
 from PIL import Image # Python Imaging Library
 
-class BarraLateral(ctk.CTkFrame):
-    def __init__(self, master, **kwargs):
+class  BarraLateral(ctk.CTkFrame):
+    def __init__(self, master, database, **kwargs):
         super().__init__(master, **kwargs)
+
+        self.db = database
 
         # Botão Tela Inicial
         self.image_casa = ctk.CTkImage(

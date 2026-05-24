@@ -2,12 +2,14 @@
 import customtkinter as ctk
 # from .* import .*
 from customtkinter import CTkFont
-from components.barra_lateral import BarraLateral
-from components.parte_principal import PartePrincipal
+from assets.components.barra_lateral import BarraLateral
+from assets.components.parte_principal import PartePrincipal
 
 class TelaInicial(ctk.CTkFrame):
-    def __init__(self, master, **kwargs):
+    def __init__(self, master, database, **kwargs):
         super().__init__(master, **kwargs)
+
+        self.db = database
 
         ##################################
         ## Configurações da TelaInicial ##
@@ -24,6 +26,7 @@ class TelaInicial(ctk.CTkFrame):
 
         self.frame_barra_lateral = BarraLateral(
             master=self,
+            database=self.db,
             corner_radius=0,
             fg_color=("#FFFFFF", "#000000"),
         )
@@ -37,6 +40,7 @@ class TelaInicial(ctk.CTkFrame):
 
         self.tabview_parte_principal = PartePrincipal(
             master=self,
+            database=self.db,
             fg_color=("#FFFFFF", "#000000")
         )
         self.tabview_parte_principal.grid(

@@ -1,12 +1,12 @@
 # import .*
 import customtkinter as ctk
 # from *. import .*
-# from CTkMessagebox import CTkMessagebox
+from CTkMessagebox import CTkMessagebox
 from customtkinter import CTkFont
 
 class TelaLogin(ctk.CTkFrame):
     '''Cria um frame contendo todos os elementos de uma tela de login pronta'''
-    def __init__(self, master, **kwargs):
+    def __init__(self, master, database, action, **kwargs):
         '''
         Cria e adiciona todos os elementos ao frame
         
@@ -18,6 +18,9 @@ class TelaLogin(ctk.CTkFrame):
         # Para de fato criar um frame
         super().__init__(master, **kwargs)
         
+        self.db = database
+        self.action = action
+
         ################################
         ## Configurações da TelaLogin ##
         ################################
@@ -194,17 +197,36 @@ class TelaLogin(ctk.CTkFrame):
         ctk.set_appearance_mode("Dark" if self.switch_modo_escuro.get() else "Light")
 
     def entrar(self):
-        # Será implementado posteriormente
-        # msg = CTkMessagebox(
-        #     title="Pare ai! Estamos em construção.",
-        #     icon="info",
-        #     message="Por favor, aguarde nossos engenheiros concluirem a obra antes de prosseguir.",
-        #     font=CTkFont(
-        #         size=14,
-        #         family="Arial"
-        #     ),
-        #     option_1="Ficar no aguardo...",
-        #     width=450,
-        #     height=250,
-        # )
-        pass
+        email = self.entry_usuario.get().strip()
+        senha = self.entry_senha.get().strip()
+
+        if not email or not senha:
+            CTkMessagebox(
+                title="Dados inválidos",
+                message="Preencha os campos corretamente.",
+                icon="warning",
+                font=CTkFont(
+                    size=14,
+                    family="Arial"
+                )
+            )
+            return
+
+        cod_usuario = self.db.buscar_usuario(email, senha)
+
+        if not cod_usuario:
+            self.db.cadastrar_usuario(email, senha)
+            CTkMessagebox(
+                title="Usuário Cadastrado",
+                message=f"Usuário {email} cadastrado com sucesso!",
+                icon="check",
+                font=CTkFont(
+                    size=14,
+                    family="Arial"
+                )
+            )
+        else:
+            self.action()
+
+        self.entry_usuario.delete("0", "end")
+        self.entry_senha.delete("0", "end")

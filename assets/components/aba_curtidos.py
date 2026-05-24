@@ -4,13 +4,15 @@ import customtkinter as ctk
 from customtkinter import CTkFont
 from PIL import Image
 
-class AbaBaixados(ctk.CTkFrame):
-    def __init__(self, master, **kwargs):
+class AbaCurtidos(ctk.CTkFrame):
+    def __init__(self, master, database, **kwargs):
         super().__init__(master, **kwargs)
+
+        self.db = database
 
         self.label_titulo = ctk.CTkLabel(
             master=self,
-            text="Aba - Baixados",
+            text="Aba - Curtidos",
             font=CTkFont(
                 size=24,
                 family="Arial"
@@ -21,4 +23,3 @@ class AbaBaixados(ctk.CTkFrame):
             rely=0.5,
             anchor="center"
         )
-        

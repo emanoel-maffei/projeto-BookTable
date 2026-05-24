@@ -5,11 +5,13 @@ import subprocess
 from customtkinter import CTkFont
 from PIL import Image
 # from components.*
-from components.livro import Livro
+from assets.components.livro import Livro
 
 class AbaInicio(ctk.CTkFrame):
-    def __init__(self, master, **kwargs):
+    def __init__(self, master, database, **kwargs):
         super().__init__(master, **kwargs)
+
+        self.db = database
 
         ##########################
         ## Configurações da Aba ##
@@ -57,9 +59,13 @@ class AbaInicio(ctk.CTkFrame):
         #
         # Criação dos elementos correspondentes a livros
 
-        self.frame_livros = ctk.CTkFrame(
+        self.frame_livros = ctk.CTkScrollableFrame(
             master=self,
-            fg_color="transparent"
+            fg_color="transparent",
+            scrollbar_button_color="#AAAAAA",
+            scrollbar_button_hover_color="#999999",
+            border_width=2,
+            border_color="#DDDDDD"
         )
         self.frame_livros.grid(
             row=1,
@@ -69,27 +75,20 @@ class AbaInicio(ctk.CTkFrame):
 
         # Elementos representando Livros
 
-        self.livros = list()
-        self.image_livro = ctk.CTkImage(
-            light_image=Image.open("./assets/icons/livro.ico"),
-            dark_image=Image.open("./assets/icons/livro.ico"),
-            size=(76, 100)
-        )
 
-        for i in range(18):
-            self.livros.append(Livro(
-                master=self.frame_livros,
-                image=self.image_livro
-            ))
+        self.livros = list()
+        
+        # Aqui...
 
     def reorganizar_livros(self, eventos):
+        subprocess.run("cls", shell=True)
         if self.frame_livros.winfo_width() > 1:
             largura_aba_inicial = self.frame_livros.winfo_width()
         else:
-            largura_aba_inicial = 500
+            largura_aba_inicial = 650
 
         largura_livro = 88
-        livros_por_linha = max(1, (largura_aba_inicial // largura_livro))
+        livros_por_linha = max(3, (largura_aba_inicial - 100) // largura_livro - 1)
 
         linha = 0
         coluna = 0
